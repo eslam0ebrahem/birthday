@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     flipdownElem.hidden = true;
     flipdownElem.parentNode.appendChild(message);
 
-    var numCopies = 3;
+    var numCopies = 2;
     var img1 = document.createElement("img");
     var img2 = document.createElement("img");
 
