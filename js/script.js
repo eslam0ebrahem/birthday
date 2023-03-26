@@ -1,91 +1,84 @@
-
-
 $(document).ready(() => {
-    play()
-})
+  play();
+});
 
 function play() {
-
-    for (let i = 0; i < 4; i++) {
-        var startin = getR(0,10000)
-        setTimeout(() => {
-        var x = getR(0, $(document).width()-300)
-        var y = getR(0, $(document).height()-300)
-        var deg = getR(0, 360)
-        var scale = getR(.5, 1)
-        var e = $(`
-                <div deg="${deg}" id="fly-${i}" class="mariposa" scale = "${scale}" style="transform: rotate(${deg}deg) scale(${scale}); top: ${y}px; left: ${x}px;">
-                <div class="mariposa-turn fly-${i}">
-                    <div class="mariposa-flutter"></div>
-                    </div>
-                </div>`).appendTo(".stage");
-        
-            render($(e))
-        }, startin);
-    }
-}
-
-
-function render(element, c) {
-    // caculate new position
-    // if (c > 10) return;
-    var break_counter = 0
-    var myy = parseFloat(element.css("top"))
-    var myx = parseFloat(element.css("left"))
-    while (true) {
-        // get random direction and distance
-        var last_deg = parseFloat(element.attr('deg'))
-        var deg_dir = getR(-180, 180) + last_deg
-        var dist = getR(200, 300) * parseFloat(element.attr('scale'))
-        var newy = myy + sin(deg_dir) * dist
-        var newx = myx + cos(deg_dir) * dist
-        // check for validation
-        if (newx >= 0 && newy >= 0 && newx <= $(document).width()-200 & newy <= $(document).height()-200) break;
-        if (break_counter++ > 10000) {
-            break_counter = 0
-            break;
-        }
-        else {
-
-        }
-    }
-
-    // random watiing
-    var timerotate = getR(500, 1000)
-    var timemove = getR(500, 1000)
-    var sleep = getR(1000, 10000)
+  const flyCount = 4;
+  for (let i = 0; i < flyCount; i++) {
+    const startingTime = getR(0, 10000);
     setTimeout(() => {
-        var id = element.attr("id")
-        console.log(id)
-        var scale = element.attr('scale')
-        element.css({ "transform": `rotate(${deg_dir}deg) scale(${scale})` })
-        setTimeout(() => {
-            $("." + id + ' > div').attr('class', 'mariposa-s-flutter')
-
-            element.css({ 'top': newy + 'px', 'left': newx + 'px' })
-            // new round
-            setTimeout(() => {
-                $("." + id + '> div').attr('class', 'mariposa-flutter')
-                c = c ?? 1
-                render(element, ++c)
-            }, timemove+1000)
-
-        }, timerotate + 1000);
-    }, sleep);
+      createFly(i);
+    }, startingTime);
+  }
 }
 
+function createFly(index) {
+  const x = getR(0, $(document).width() - 300);
+  const y = getR(0, $(document).height() - 300);
+  const deg = getR(0, 360);
+  const scale = getR(0.5, 1);
 
+  const fly = $(`
+      <div id="fly-${index}" class="mariposa" style="transform: rotate(${deg}deg) scale(${scale}); top: ${y}px; left: ${x}px;">
+        <div class="mariposa-turn fly-${index}">
+          <div class="mariposa-flutter"></div>
+        </div>
+      </div>
+    `).appendTo(".stage");
 
+  animateFly(fly, deg, scale);
+}
 
+function animateFly(fly, lastDeg, scale) {
+  const degDir = getR(-180, 180) + lastDeg;
+  const dist = getR(200, 300) * scale;
+  const currentY = parseFloat(fly.css("top"));
+  const currentX = parseFloat(fly.css("left"));
 
+  let newTop = currentY + sin(degDir) * dist;
+  let newLeft = currentX + cos(degDir) * dist;
 
+  if (
+    newLeft < 0 ||
+    newTop < 0 ||
+    newLeft > $(document).width() - 200 ||
+    newTop > $(document).height() - 200
+  ) {
+    [newTop, newLeft] = [currentY, currentX];
+  }
 
+  const rotationTime = getR(500, 1000);
+  const movementTime = getR(500, 1000);
+  const sleepTime = getR(1000, 10000);
 
+  setTimeout(() => {
+    fly.css({
+      transform: `rotate(${degDir}deg) scale(${scale})`,
+    });
 
+    setTimeout(() => {
+      const id = fly.attr("id");
 
+      $("." + id + " > div").attr("class", "mariposa-s-flutter");
 
+      fly.animate(
+        {
+          top: newTop + "px",
+          left: newLeft + "px",
+        },
+        movementTime,
+        () => {
+          $("." + id + "> div").attr("class", "mariposa-flutter");
 
+          setTimeout(() => {
+            animateFly(fly, degDir, scale);
+          }, movementTime + 1000);
+        }
+      );
+    }, rotationTime + 1000);
+  }, sleepTime);
+}
 
-const cos = (degree) => Math.cos(degree * Math.PI / 180);
-const sin = (degree) => Math.sin(degree * Math.PI / 180);
+const cos = (degree) => Math.cos((degree * Math.PI) / 180);
+const sin = (degree) => Math.sin((degree * Math.PI) / 180);
 const getR = (min, max) => Math.random() * (max - min) + min;
