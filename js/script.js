@@ -6,7 +6,7 @@ $(document).ready(() => {
 
 function play() {
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 4; i++) {
         var startin = getR(0,10000)
         setTimeout(() => {
         var x = getR(0, $(document).width()-300)
