@@ -1,49 +1,76 @@
-/* General Styles */
-body,
 html {
   height: 100%;
-  margin: 0;
 }
 
 body {
+  margin: 0px;
+  height: 100%;
   display: flex;
-  flex-flow: column nowrap;
   align-items: center;
-  justify-content: space-around;
-  transition: 0.2s ease-in-out;
-  font-family: Roboto, sans-serif;
+  align-content: space-around;
+}
+
+body,
+.example h1,
+.example p,
+.example .button {
+  transition: all .2s ease-in-out;
+}
+
+body.light-theme {
+  background-color: #d6c18b;
+}
+
+body.light-theme .example h1 {
+  color: #FFFFFF;
+}
+
+body.light-theme .example p {
+  color: #FFFFFF;
+}
+
+body.light-theme .buttons .button {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+body.light-theme .buttons .button:hover {
+  color: #d6c18b;
+  background-color: #FFFFFF;
 }
 
 .example {
+  font-family: 'Roboto', sans-serif;
   width: 550px;
   height: 378px;
+  margin: auto;
   padding: 20px;
   box-sizing: border-box;
 }
 
-.example .button,
-.example .buttons p,
-.example h1,
-.example p {
-  font-weight: 100;
-  text-align: center;
-  margin-top: 0;
-  transition: 0.2s ease-in-out;
+.example .flipdown {
+  margin: auto;
 }
 
 .example h1 {
+  text-align: center;
+  font-weight: 100;
   font-size: 3em;
+  margin-top: 0;
   margin-bottom: 10px;
 }
 
 .example p {
+  text-align: center;
+  font-weight: 100;
+  margin-top: 0;
   margin-bottom: 35px;
 }
 
 .example .buttons {
   width: 100%;
   height: 50px;
-  margin: 50px auto 0;
+  margin: 50px auto 0px auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -52,35 +79,36 @@ body {
 .example .buttons p {
   height: 50px;
   line-height: 50px;
-  padding-right: 25px;
-  color: #333;
-  margin: 0;
   font-weight: 400;
+  padding: 0px 25px 0px 0px;
+  color: #333;
+  margin: 0px;
 }
 
 .example .button {
   display: inline-block;
   height: 50px;
+  box-sizing: border-box;
   line-height: 46px;
   text-decoration: none;
   color: #333;
-  padding: 0 20px;
-  border: 2px solid #333;
+  padding: 0px 20px;
+  border: solid 2px #333;
   border-radius: 4px;
   text-transform: uppercase;
   font-weight: 700;
+  transition: all .2s ease-in-out;
 }
 
 .example .button:hover {
   background-color: #333;
-  color: #fff;
+  color: #FFF;
 }
 
 .example .button i {
   margin-right: 5px;
 }
 
-/* Responsive Styles */
 @media(max-width: 550px) {
   .example {
     width: 100%;
@@ -102,42 +130,20 @@ body {
     display: block;
   }
 
-  .example .buttons a,
-  .example .buttons p {
+  .example .buttons p,
+  .example .buttons a {
     float: none;
     margin: 0 auto;
   }
 
   .example .buttons p {
-    padding-right: 0;
+    padding-right: 0px;
   }
 
   .example .buttons a {
     display: inline-block;
   }
 }
-
-/* Light Theme Styles */
-body.light-theme {
-  background-color: #d6c18b;
-}
-
-body.light-theme .buttons .button,
-body.light-theme .example h1,
-body.light-theme .example p {
-  color: #fff;
-  transition: 0.2s ease-in-out;
-}
-
-body.light-theme .buttons .button {
-  border-color: #fff;
-}
-
-body.light-theme .buttons .button:hover {
-  color: #d6c18b;
-  background-color: #fff;
-}
-
 .stage {
   position: fixed;
   top: 0;
@@ -158,6 +164,7 @@ body.light-theme .buttons .button:hover {
   width: 30px;
   height: 130px;
   opacity: 1;
+  -webkit-animation-fill-mode: backwards;
   animation-fill-mode: backwards;
   animation-delay: 0.125s;
   transition: 1s linear;
@@ -167,10 +174,13 @@ body.light-theme .buttons .button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+ 
   perspective: 1000px;
   position: absolute;
   margin: auto;
   transform-origin: 50% 80%;
+  /* turn from a natural center */
+  -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   animation: turn 5s infinite cubic-bezier(0.31, 0.09, 0.77, 1.5);
   transform-style: preserve-3d;
@@ -183,6 +193,7 @@ body.light-theme .buttons .button:hover {
   position: relative;
   top: 0;
   margin: 0 auto;
+  background: url("https://assets.codepen.io/2273448/butterfly-body.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -207,64 +218,102 @@ body.light-theme .buttons .button:hover {
   animation-delay: 0;
 }
 
-.mariposa-flutter::before,
-.mariposa-s-flutter::before {
+.mariposa-flutter::before {
   background-image: url("https://assets.codepen.io/2273448/butterfly-wing.png");
   transform-origin: 0% 50%;
   animation: flutter-r .5s infinite ease-out;
   left: 55%;
 }
 
-.mariposa-flutter::after,
-.mariposa-s-flutter::after {
+
+.mariposa-flutter::after {
   background-image: url("https://assets.codepen.io/2273448/butterfly-wing-l.png");
   transform-origin: 100% 50%;
   animation: flutter-l .5s infinite ease-out;
   right: 55%;
 }
 
+
+.mariposa-s-flutter::before {
+  background-image: url("https://assets.codepen.io/2273448/butterfly-wing.png");
+  transform-origin: 0% 50%;
+  animation: flutter-s-r .5s infinite ease-out;
+  left: 55%;
+}
+.mariposa-s-flutter::after {
+  background-image: url("https://assets.codepen.io/2273448/butterfly-wing-l.png");
+  transform-origin: 100% 50%;
+  animation: flutter-s-l .5s infinite ease-out;
+  right: 55%;
+}
+
+
 @keyframes flutter-s-r {
-  0%, 50%, 100% {
-    transform: rotateY(0deg);
+
+  0%,
+  50%,
+  100%
+   {
+      transform: rotateY(0deg);
   }
-  25%, 75% {
-    transform: rotateY(-40deg);
+
+  25%,
+  75%{
+      transform: rotateY(-40deg);
   }
 }
 
 @keyframes flutter-s-l {
-  0%, 50%, 100% {
-    transform: rotateY(0deg);
+
+  0%,
+  50%,
+  100%
+   {
+      transform: rotateY(0deg);
   }
-  25%, 75% {
-    transform: rotateY(40deg);
+
+  25%,
+  75%{
+      transform: rotateY(40deg);
   }
 }
 
+
+
 @keyframes flutter-r {
-  0%, 100% {
-    transform: rotateY(-10deg);
+
+  0%,100%{
+      transform: rotateY(-10deg);
   }
-  50% {
-    transform: rotateY(-30deg);
+
+  50%{
+      transform: rotateY(-30deg);
   }
 }
 
 @keyframes flutter-l {
-  0%, 100% {
-    transform: rotateY(10deg);
+
+  0%,100%{
+      transform: rotateY(10deg);
   }
-  50% {
-    transform: rotateY(30deg);
+
+  50%{
+      transform: rotateY(30deg);
   }
 }
 
 @keyframes turn {
-  0%, 50%, 100% {
-    filter: drop-shadow(50px 30px 10px rgba(0, 0, 0, 0.5));
-    transform: scale(1.05);
+
+  0%,
+  50%,
+  100%
+   {
+      filter: drop-shadow(50px 30px 10px rgba(0, 0, 0, 0.5));
+      transform: scale(1.05);
   }
-  25%, 75% {
+
+  25%,
+  75%{
       filter: drop-shadow(30px 10px 0px rgba(0, 0, 0, 0.5));
       transform: scale(.95);
   }
