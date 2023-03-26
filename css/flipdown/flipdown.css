@@ -37,6 +37,7 @@
 /* Font styles */
 .flipdown.flipdown__theme-light {
   font-family: sans-serif;
+  margin: auto;
   font-weight: bold;
 }
 /* Rotor group headings */
