@@ -15,12 +15,19 @@ document.addEventListener("DOMContentLoaded", () => {
     theme: "light",
   };
 
+  // Define the Minsk timezone offset in minutes
+  const minskTimezoneOffsetInMinutes = -120;
+
   // Get the current time in seconds
-  const nowInSeconds = new Date().getTime() / 1000;
+  const nowInSeconds = Math.floor(Date.now() / 1000);
 
   // Get the birthday time in seconds
-  const birthdayInMinskTimezone = new Date(Date.UTC(2023, 2, 27, -2)); // 27/3 in Minsk timezone
-  const birthdayInSeconds = birthdayInMinskTimezone.getTime() / 1000;
+  const birthdayInMinskTimezone = new Date(
+    Date.UTC(2023, 2, 27, 0, minskTimezoneOffsetInMinutes)
+  );
+  const birthdayInSeconds = Math.floor(
+    birthdayInMinskTimezone.getTime() / 1000
+  );
 
   if (nowInSeconds >= birthdayInSeconds) {
     // Display the birthday message if the birthday has passed
