@@ -318,3 +318,26 @@ body.light-theme .buttons .button:hover {
       transform: scale(.95);
   }
 }
+
+
+
+.message {
+  font-family: 'Roboto', sans-serif;
+  animation: colorChange 20s infinite;
+  letter-spacing: 4px;
+  text-align: center;
+  font-weight: 600;
+  text-shadow: 0px 0px 3px #ffffff73;
+}
+
+@keyframes colorChange {
+  0% {
+    color: rgb(0, 143, 143); /* Start with red color */
+  }
+  50% {
+    color: rgb(158, 0, 0); /* Change to green color at 50% of the animation */
+  }
+  100% {
+    color: rgb(49, 49, 49); /* End with blue color */
+  }
+}
