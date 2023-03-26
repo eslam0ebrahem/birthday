@@ -82,3 +82,4 @@ function animateFly(fly, lastDeg, scale) {
 const cos = (degree) => Math.cos((degree * Math.PI) / 180);
 const sin = (degree) => Math.sin((degree * Math.PI) / 180);
 const getR = (min, max) => Math.random() * (max - min) + min;
+
