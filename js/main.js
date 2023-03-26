@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
     for (var i = 0; i < numCopies; i++) {
       var copy1 = img1.cloneNode(true);
       var copy2 = img2.cloneNode(true);
+      var copy3 = img2.cloneNode(true);
+      var copy4 = img2.cloneNode(true);
 
       copy1.src = "1.png";
       copy2.src = "2.png";
