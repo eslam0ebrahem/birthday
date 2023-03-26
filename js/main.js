@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       var copy2 = img2.cloneNode(true);
 
       copy1.src = "1.png";
-      copy2.src = "1.png";
+      copy2.src = "2.png";
 
       copy1.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
       copy1.style.top = Math.floor(Math.random() * window.innerHeight) + "px";
