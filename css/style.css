@@ -1,6 +1,6 @@
-/* General styles */
-html,
-body {
+/* General Styles */
+body,
+html {
   height: 100%;
   margin: 0;
 }
@@ -10,30 +10,25 @@ body {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: space-around;
-  transition: all .2s ease-in-out;
-  font-family: 'Roboto', sans-serif;
+  transition: 0.2s ease-in-out;
+  font-family: Roboto, sans-serif;
 }
 
 .example {
   width: 550px;
   height: 378px;
-  margin: auto;
   padding: 20px;
   box-sizing: border-box;
 }
 
-.example .flipdown {
-  margin: auto;
-}
-
-.example h1,
-.example p,
 .example .button,
-.example .buttons p {
+.example .buttons p,
+.example h1,
+.example p {
   font-weight: 100;
   text-align: center;
   margin-top: 0;
-  transition: all .2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
 .example h1 {
@@ -70,7 +65,7 @@ body {
   text-decoration: none;
   color: #333;
   padding: 0 20px;
-  border: solid 2px #333;
+  border: 2px solid #333;
   border-radius: 4px;
   text-transform: uppercase;
   font-weight: 700;
@@ -85,6 +80,7 @@ body {
   margin-right: 5px;
 }
 
+/* Responsive Styles */
 @media(max-width: 550px) {
   .example {
     width: 100%;
@@ -106,8 +102,8 @@ body {
     display: block;
   }
 
-  .example .buttons p,
-  .example .buttons a {
+  .example .buttons a,
+  .example .buttons p {
     float: none;
     margin: 0 auto;
   }
@@ -121,16 +117,16 @@ body {
   }
 }
 
-/* Theme-specific styles */
+/* Light Theme Styles */
 body.light-theme {
   background-color: #d6c18b;
 }
 
+body.light-theme .buttons .button,
 body.light-theme .example h1,
-body.light-theme .example p,
-body.light-theme .buttons .button {
+body.light-theme .example p {
   color: #fff;
-  transition: all .2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
 body.light-theme .buttons .button {
