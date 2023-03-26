@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       copy1.src = "1.png";
       copy2.src = "2.png";
+      copy3.src = "3.png";
+      copy4.src = "4.png";
 
       copy1.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
       copy1.style.top = Math.floor(Math.random() * window.innerHeight) + "px";
@@ -38,8 +40,26 @@ document.addEventListener("DOMContentLoaded", () => {
       void copy2.offsetWidth;
       copy2.classList.add("fade");
 
+      copy3.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
+      copy3.style.top = Math.floor(Math.random() * window.innerHeight) + "px";
+      copy3.style.setProperty("--tx", Math.floor(Math.random() * 200 - 100));
+      copy3.style.setProperty("--ty", Math.floor(Math.random() * 200 - 100));
+      copy3.classList.remove("fade");
+      void copy3.offsetWidth;
+      copy3.classList.add("fade");
+
+      copy4.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
+      copy4.style.top = Math.floor(Math.random() * window.innerHeight) + "px";
+      copy4.style.setProperty("--tx", Math.floor(Math.random() * 200 - 100));
+      copy4.style.setProperty("--ty", Math.floor(Math.random() * 200 - 100));
+      copy4.classList.remove("fade");
+      void copy4.offsetWidth;
+      copy4.classList.add("fade");
+
       document.body.appendChild(copy1);
       document.body.appendChild(copy2);
+      document.body.appendChild(copy3);
+      document.body.appendChild(copy4);
     }
   }
 
