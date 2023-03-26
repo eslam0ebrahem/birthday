@@ -14,12 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
     var numCopies = 2;
     var img1 = document.createElement("img");
     var img2 = document.createElement("img");
+    var img3 = document.createElement("img");
+    var img4 = document.createElement("img");
 
     for (var i = 0; i < numCopies; i++) {
       var copy1 = img1.cloneNode(true);
       var copy2 = img2.cloneNode(true);
-      var copy3 = img2.cloneNode(true);
-      var copy4 = img2.cloneNode(true);
+      var copy3 = img3.cloneNode(true);
+      var copy4 = img4.cloneNode(true);
 
       copy1.src = "1.png";
       copy2.src = "2.png";
